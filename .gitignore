@@ -1,0 +1,12 @@
+# Ignore data files
+data/
+
+# Python
+__pycache__/
+*.pyc
+
+# Mac
+.DS_Store
+
+# VS Code
+.vscode/
