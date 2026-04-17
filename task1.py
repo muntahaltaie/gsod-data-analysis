@@ -15,11 +15,11 @@ paths = [
 
 df = spark.read.csv(paths, header=True, inferSchema=True)
 
-print("\n=== First 5 Rows ===")
+print("\nFirst 5 Rows")
 df.show(5, truncate=False)
 
 # Print schema
-print("\n=== Schema ===")
+print("\nSchema")
 df.printSchema()
 
 # Create YEAR column
@@ -34,7 +34,7 @@ unique_stations = df.select("STATION").distinct().count()
 print(f"Unique stations: {unique_stations}")
 
 # Show years covered
-print("\n=== Years Covered ===")
+print("\nYears Covered")
 df.select("YEAR").distinct().orderBy("YEAR").show()
 
 
@@ -54,11 +54,11 @@ missing_prcp_count = df.filter(
 print(f"Missing/invalid PRCP values: {missing_prcp_count}")
 
 # Summary stats
-print("\n=== Summary Statistics ===")
+print("\nSummary Statistics")
 df.select("TEMP", "MAX", "MIN", "PRCP").describe().show()
 
 # Counts rows per year
-print("\n=== Record Count by Year ===")
+print("\nRecord Count per Year")
 df.groupBy("YEAR").count().orderBy("YEAR").show()
 
 # Stops Spark
