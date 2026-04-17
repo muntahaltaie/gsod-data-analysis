@@ -26,7 +26,7 @@ df_temp = df.select("STATION", "DATE", "TEMP")
 print("\nSelected Columns Preview")
 df_temp.show(5, truncate=False)
 
-# Extract YEAR from DATE
+# Find YEAR from DATE
 df_temp = df_temp.withColumn("YEAR", substring(col("DATE").cast("string"), 1, 4).cast("int"))
 
 # Remove missing temp values
