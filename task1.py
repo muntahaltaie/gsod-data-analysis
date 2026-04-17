@@ -37,14 +37,12 @@ print(f"Unique stations: {unique_stations}")
 print("\nYears Covered")
 df.select("YEAR").distinct().orderBy("YEAR").show()
 
-
 # Missing temp values
 missing_temp_count = df.filter(
     (col("TEMP") == 9999.9) | col("TEMP").isNull()
 ).count()
 
 print(f"Missing/invalid TEMP values: {missing_temp_count}")
-
 
 # Missing precp. values
 missing_prcp_count = df.filter(
