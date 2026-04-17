@@ -104,7 +104,7 @@ def apply_theme(fig, height=420):
     fig.update_yaxes(**AXIS_STYLE)
     return fig
 
-# ── Load data ─────────────────────────────────────────────────────────────────
+# Load data 
 @st.cache_data
 def load_data():
     for path in ["output/task4_climate_stats", "output/task2_avg_temp"]:
@@ -132,7 +132,7 @@ if df is None:
     st.error("No data found. Run task2.py or task4_prepare.py first.")
     st.stop()
 
-# ── Header ────────────────────────────────────────────────────────────────────
+# Header 
 st.markdown("""
 <div class="dash-header">
   <div class="dash-tag">GSOD · NOAA · Global Weather Stations</div>
@@ -141,7 +141,7 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# ── Sidebar ───────────────────────────────────────────────────────────────────
+# Sidebar 
 with st.sidebar:
     st.markdown('<div class="section-label">Filters</div>', unsafe_allow_html=True)
 
@@ -168,7 +168,7 @@ if not selected_labels:
     st.warning("Select at least one station in the sidebar.")
     st.stop()
 
-# ── Filter ────────────────────────────────────────────────────────────────────
+# Filter
 label_to_station  = df[["station","label"]].drop_duplicates().set_index("label")["station"].to_dict()
 selected_stations = [label_to_station[l] for l in selected_labels]
 filtered = df[
@@ -180,7 +180,7 @@ if filtered.empty:
     st.warning("No data for the selected filters.")
     st.stop()
 
-# ── KPI row ───────────────────────────────────────────────────────────────────
+# KPI row
 hottest     = filtered.loc[filtered["avg_temp"].idxmax()]
 coldest     = filtered.loc[filtered["avg_temp"].idxmin()]
 overall_avg = filtered["avg_temp"].mean()
@@ -195,7 +195,7 @@ st.markdown(f"""
 </div>
 """, unsafe_allow_html=True)
 
-# ── Tabs ──────────────────────────────────────────────────────────────────────
+# Tabs 
 tab1, tab2, tab3, tab4 = st.tabs([
     "Long-Term Trends", "Station Comparison",
     "Temperature Variability", "Extreme Weather"
@@ -367,7 +367,7 @@ with tab4:
     else:
         st.info("No extreme outliers detected in the current selection.")
 
-# ── Footer ────────────────────────────────────────────────────────────────────
+# Footer
 st.markdown("""
 <div style="text-align:center;padding:36px 0 16px;border-top:1px solid #1e3022;
      font-family:DM Mono,monospace;font-size:10px;color:#6e8870;
