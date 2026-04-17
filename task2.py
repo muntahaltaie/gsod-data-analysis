@@ -18,12 +18,12 @@ paths = [
 
 df = spark.read.csv(paths, header=True, inferSchema=True)
 
-print("\n=== Original Schema ===")
+print("\nOriginal Schema")
 df.printSchema()
 
 df_temp = df.select("STATION", "DATE", "TEMP")
 
-print("\n=== Selected Columns Preview ===")
+print("\nSelected Columns Preview")
 df_temp.show(5, truncate=False)
 
 # Extract YEAR from DATE
@@ -34,7 +34,7 @@ df_temp_clean = df_temp.filter(
     col("TEMP").isNotNull() & (col("TEMP") != 9999.9)
 )
 
-print("\n=== Cleaned Data Preview ===")
+print("\nCleaned Data Preview")
 df_temp_clean.show(5, truncate=False)
 
 # Average annual temp per station
@@ -42,10 +42,10 @@ df_avg = df_temp_clean.groupBy("STATION", "YEAR") \
     .agg(spark_round(avg("TEMP"), 2).alias("average_temperature")) \
     .orderBy("STATION", "YEAR")
 
-print("\n=== Average Annual Temperature by Station ===")
+print("\nAverage Annual Temperature by Station")
 df_avg.show(50, truncate=False)
 
-# Number of output rows
+# Output count
 output_count = df_avg.count()
 print(f"\nTotal aggregated rows: {output_count}")
 
