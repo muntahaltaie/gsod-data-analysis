@@ -6,7 +6,7 @@ spark = SparkSession.builder \
     .appName("GSOD Task 1") \
     .getOrCreate()
 
-# Read CSV files from 3 folders
+# Read CSV  
 paths = [
     "data/2020/*.csv",
     "data/2021/*.csv",
@@ -29,7 +29,7 @@ df = df.withColumn("YEAR", year(col("DATE")))
 total_records = df.count()
 print(f"\nTotal records: {total_records}")
 
-# Count unique weather stations
+# Count unique stations
 unique_stations = df.select("STATION").distinct().count()
 print(f"Unique stations: {unique_stations}")
 
@@ -38,8 +38,7 @@ print("\n=== Years Covered ===")
 df.select("YEAR").distinct().orderBy("YEAR").show()
 
 
-# Missing/invalid temperature values
-# NOAA GSOD often uses 9999.9 for missing TEMP
+# Missing temp values
 missing_temp_count = df.filter(
     (col("TEMP") == 9999.9) | col("TEMP").isNull()
 ).count()
@@ -47,15 +46,14 @@ missing_temp_count = df.filter(
 print(f"Missing/invalid TEMP values: {missing_temp_count}")
 
 
-# Missing/invalid precipitation values
-# NOAA GSOD often uses 99.99 for missing PRCP
+# Missing precp. values
 missing_prcp_count = df.filter(
     isnull(col("PRCP")) | (col("PRCP") == 99.99)
 ).count()
 
 print(f"Missing/invalid PRCP values: {missing_prcp_count}")
 
-# Summary statistics
+# Summary stats
 print("\n=== Summary Statistics ===")
 df.select("TEMP", "MAX", "MIN", "PRCP").describe().show()
 
