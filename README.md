@@ -27,7 +27,7 @@ python task2.py
 (This generates the processed data required for the dashboard.)
 
 ### 4. Run dashboard (Task 4)
-1. In terminal, paste: streamlit run task4_dashboard.py
+1. In terminal, paste: streamlit run Task4/dashboard.py
 2. Then open the local URL shown in the terminal (http://localhost:8501)
 
 ## Output
