@@ -1,4 +1,4 @@
-# GSOD Data Analysis - Task 1
+# GSOD Data Analysis
 
 ## Dataset
 This project uses a subset of the NOAA GSOD dataset:
@@ -22,7 +22,7 @@ data/2021/
 data/2022/
 
 ### 3. Run preprocessing (Task 2)
-python Task2/task2.py
+python task2.py
 
 (This generates the processed data required for the dashboard.)
 
