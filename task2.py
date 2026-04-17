@@ -49,7 +49,7 @@ df_avg.show(50, truncate=False)
 output_count = df_avg.count()
 print(f"\nTotal aggregated rows: {output_count}")
 
-# Save results
+# Save output 
 df_avg.coalesce(1).write.mode("overwrite").option("header", True).csv("output/task2_avg_temp")
 
 print("\nOutput saved to: output/task2_avg_temp")
