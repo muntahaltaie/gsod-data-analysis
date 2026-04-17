@@ -1,4 +1,4 @@
-# Run in terminal: streamlit run task4_dashboard.py
+# Run in terminal: streamlit run Task4/dashboard.py
 
 import streamlit as st
 import pandas as pd
